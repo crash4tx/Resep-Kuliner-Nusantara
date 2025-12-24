@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sate Bandeng – Resep Nusantara</title>
+
+    <link rel="stylesheet" href="resep_masakan.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../img ikon/vector.svg">
+            <span>ResepNusantara</span>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">☰</label>
+
+        <ul class="menu">
+            <li><a href="../beranda.html">Beranda</a></li>
+            <li><a href="../provinsi.html" class="active">Provinsi</a></li>
+            <li><a href="../peringkat.html">Peringkat</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="../img masakan/sate bandeng.png" class="hero-img">
+
+        <div class="hero-content">
+            <a href="../daftar_resep/banten.html" class="btn-back">
+                <img src="../img ikon/arrow.svg">
+                <span>Kembali</span>
+            </a>
+
+            <p class="tag">Banten</p>
+            <h1>Sate Bandeng</h1>
+            <div class="rating-wrapper">
+                <button class="rate-btn" id="likeBtn">
+                    <img src="../img ikon/like.svg" alt="Like">
+                </button>
+
+                <button class="rate-btn" id="dislikeBtn">
+                    <img src="../img ikon/dislike.svg" alt="Dislike">
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section">
+        <h2>Tentang Menu Ini</h2>
+        <p class="sub">
+            Sate Bandeng adalah hidangan khas Banten berupa ikan bandeng tanpa duri yang diisi ulang dengan bumbu halus
+            lalu dibakar hingga harum.
+        </p>
+    </section>
+
+    <!-- DETAIL -->
+    <div class="detail-container">
+
+        <div class="detail-card">
+            <h3>Resep</h3>
+            <ul>
+                <li>1 ekor ikan bandeng besar</li>
+                <li>5 siung bawang merah</li>
+                <li>4 siung bawang putih</li>
+                <li>3 cabai merah</li>
+                <li>1 sdt ketumbar</li>
+                <li>1 sdt garam</li>
+                <li>1 sdm gula</li>
+                <li>Saus atau kecap untuk olesan</li>
+            </ul>
+        </div>
+
+        <div class="detail-card">
+            <h3>Cara Mengolah</h3>
+            <ul>
+                <li>Keluarkan daging bandeng tanpa merusak kulitnya.</li>
+                <li>Haluskan bumbu lalu tumis hingga harum.</li>
+                <li>Campur bumbu tumis dengan daging ikan.</li>
+                <li>Masukkan kembali adonan ke dalam kulit ikan.</li>
+                <li>Bakar sambil dioles kecap hingga kecoklatan.</li>
+                <li>Sajikan hangat.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        const likeBtn = document.getElementById("likeBtn");
+        const dislikeBtn = document.getElementById("dislikeBtn");
+
+        likeBtn.addEventListener("click", () => {
+            likeBtn.classList.toggle("active");
+            if (likeBtn.classList.contains("active")) {
+                dislikeBtn.classList.remove("active");
+            }
+        });
+
+        dislikeBtn.addEventListener("click", () => {
+            dislikeBtn.classList.toggle("active");
+            if (dislikeBtn.classList.contains("active")) {
+                likeBtn.classList.remove("active");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resep Provinsi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/daftar_resep.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <img src="img/ikon/vector.svg">
+    <span>ResepNusantara</span>
+  </div>
+  <ul class="menu">
+    <li><a href="beranda.html">Beranda</a></li>
+    <li><a href="provinsi.html" class="active">Provinsi</a></li>
+    <li><a href="peringkat.html">Peringkat</a></li>
+  </ul>
+</nav>
+
+<a href="provinsi.html" class="back-wrapper">
+  <img src="img/ikon/arrow.svg" class="arrow-img">
+  <p>Kembali ke Provinsi</p>
+</a>
+
+<!-- HEADER PROVINSI -->
+<div class="provinsi-wrapper">
+  <img id="provImg" class="provinsi-img">
+  <div>
+    <h2 class="provinsi-title" id="provName"></h2>
+    <p class="provinsi-sub" id="provCount"></p>
+  </div>
+</div>
+
+<h2 class="section-title-prov">Makanan Tradisional</h2>
+
+<!-- LIST RESEP -->
+<div id="resepList"></div>
+
+<script type="module">
+import { supabase } from './js/supabase.js';
+
+// ambil slug provinsi dari URL
+const params = new URLSearchParams(window.location.search);
+const provSlug = params.get('provinsi');
+
+if (!provSlug) {
+  window.location.href = 'provinsi.html';
+}
+
+// ambil data provinsi
+const { data: prov } = await supabase
+  .from('provinces')
+  .select('*')
+  .eq('slug', provSlug)
+  .single();
+
+document.getElementById('provName').innerText = prov.name;
+document.getElementById('provImg').src = prov.image_url;
+
+// ambil resep
+const { data: recipes } = await supabase
+  .from('recipes')
+  .select('*')
+  .eq('province_id', prov.id);
+
+document.getElementById('provCount').innerText =
+  `${recipes.length} Resep`;
+
+const list = document.getElementById('resepList');
+
+recipes.forEach(r => {
+  const a = document.createElement('a');
+  a.href = `resep.html?slug=${r.slug}`;
+  a.className = 'card';
+
+  a.innerHTML = `
+<div class="card-img">
+  <img src="${r.image_url}">
+</div>
+
+<div class="card-content">
+  <h3>${r.title}</h3>
+  <p>${r.description}</p>
+</div>
+  `;
+
+  list.appendChild(a);
+});
+</script>
+
+</body>
+</html>

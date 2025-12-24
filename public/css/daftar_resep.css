@@ -1,0 +1,215 @@
+/* ==================== GLOBAL ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #fff;
+    color: #222;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar {
+    width: 100%;
+    padding: 22px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 36px;
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.menu {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 900;
+    transition: .2s ease;
+}
+
+.menu a:hover,
+.menu .active {
+    color: #D64541;
+}
+
+.hamburger {
+    display: none;
+    font-size: 34px;
+    cursor: pointer;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .hamburger { display: block; }
+
+    .menu {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background: #fff;
+        width: 220px;
+        display: none;
+        flex-direction: column;
+        padding: 20px;
+        gap: 18px;
+        border-radius: 12px 0 12px 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    #menu-toggle:checked ~ .menu {
+        display: flex;
+    }
+}
+
+/* ==================== PROVINSI PAGE STYLE ==================== */
+
+/* BACK BUTTON */
+.back-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 40px 60px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #222;
+}
+
+.arrow-img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+
+/* CARD PROVINSI */
+.provinsi-wrapper {
+    margin: 0 60px;
+    margin-top: 10px;
+
+    background: #efefef;
+    padding: 26px;
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    transition: .25s ease;
+}
+
+.provinsi-wrapper:hover {
+    background: white;
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 18px rgba(0,0,0,0.12);
+}
+
+.provinsi-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.provinsi-title {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.provinsi-sub {
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* TITLE */
+.section-title-prov {
+    margin: 45px 60px 25px;
+    font-size: 42px;
+    font-weight: 800;
+}
+
+/* ==================== CARD MAKANAN ==================== */
+.card {
+    width: 420px;
+    margin-left: 60px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    transition: .35s ease;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* IMAGE */
+.card-img {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+/* CONTENT */
+.card-content {
+    padding: 20px;
+    background: #f1f1f1;
+}
+
+.card-content h3 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.card-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar</title>
+    <link rel="stylesheet" href="./css/registrasi.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">REGISTRASI</h1>
+      <p class="subtitle">Registrasi sekarang dan temukan fitur lainnya</p>
+
+      <p id="error" class="error-msg"></p>
+
+      <label class="label">Nama</label>
+      <input
+        type="text"
+        id="name"
+        class="input-field"
+        placeholder="Masukkan nama"
+      />
+
+      <label class="label">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="input-field"
+        placeholder="Masukkan email"
+      />
+
+      <label class="label">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="input-field"
+        placeholder="Masukkan password"
+      />
+
+      <button class="btn-main" id="btnDaftar">Daftar</button>
+
+      <button class="btn-google" id="btnGoogle">
+        <img src="./img/ikon/logo google.svg" /> Daftar dengan Google
+      </button>
+
+      <p class="bottom-text">
+        Sudah punya akun? <a href="login.html">Masuk di sini</a>
+      </p>
+    </div>
+
+    <script type="module">
+      import { supabase } from "./js/supabase.js";
+
+      // REGISTER EMAIL
+      document
+        .getElementById("btnDaftar")
+        .addEventListener("click", async () => {
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value.trim();
+          const errorBox = document.getElementById("error");
+
+          errorBox.innerText = "";
+
+          if (!name || !email || !password) {
+            errorBox.innerText = "Semua field wajib diisi";
+            return;
+          }
+
+          if (password.length < 6) {
+            errorBox.innerText = "Password minimal 6 karakter";
+            return;
+          }
+
+          const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+              data: {
+                name: name,
+              },
+            },
+          });
+
+          if (error) {
+            errorBox.innerText = error.message;
+            return;
+          }
+
+          if (data?.user) {
+            alert("Registrasi berhasil. Silakan cek email untuk verifikasi.");
+            window.location.href = "login.html";
+          }
+        });
+
+      // REGISTER VIA GOOGLE (FIXED)
+      document
+        .getElementById("btnGoogle")
+        .addEventListener("click", async () => {
+          await supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+              redirectTo: location.origin + "/public/beranda.html",
+              queryParams: {
+                prompt: "select_account",
+              },
+            },
+          });
+        });
+    </script>
+  </body>
+</html>

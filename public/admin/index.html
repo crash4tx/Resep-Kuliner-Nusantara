@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin – Resep Nusantara</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <h1>Admin Dashboard</h1>
+
+    <!-- ================= PROVINSI ================= -->
+    <section>
+      <h2>Tambah / Edit Provinsi</h2>
+      <input id="prov-name" placeholder="Nama Provinsi" />
+      <input id="prov-slug" placeholder="Slug (contoh: di-yogyakarta)" />
+      <input type="file" id="prov-img" />
+      <button id="addProv">Simpan Provinsi</button>
+    </section>
+
+    <section>
+      <h3>Daftar Provinsi</h3>
+      <div id="provList"></div>
+    </section>
+
+    <hr />
+
+    <!-- ================= RESEP ================= -->
+    <section>
+      <h2>Tambah / Edit Resep</h2>
+
+      <select id="recipe-prov"></select>
+
+      <input id="rec-title" placeholder="Nama Resep" />
+      <input id="rec-slug" placeholder="Slug Resep" />
+      <textarea id="rec-desc" placeholder="Deskripsi"></textarea>
+      <textarea id="rec-ing" placeholder="Bahan (pisahkan koma)"></textarea>
+      <textarea id="rec-step" placeholder="Langkah (pisahkan titik)"></textarea>
+      <input type="file" id="rec-img" />
+
+      <button id="addRecipe">Simpan Resep</button>
+    </section>
+
+    <section>
+      <h3>Daftar Resep</h3>
+      <div id="recipeList"></div>
+    </section>
+
+    <script type="module">
+      import { supabase } from "/public/js/supabase.js";
+
+      /* ================= AUTH & ROLE CHECK ================= */
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        alert("Login dulu");
+        location.href = "/public/login.html";
+        throw "NO USER";
+      }
+
+      const { data: profile, error } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+
+      if (error || profile.role !== "admin") {
+        document.body.innerHTML = "<h2>Akses ditolak</h2>";
+        throw "NOT ADMIN";
+      }
+
+      /* ================= ELEMENT ================= */
+      const provList = document.getElementById("provList");
+      const recipeList = document.getElementById("recipeList");
+      const provSelect = document.getElementById("recipe-prov");
+
+      const provName = document.getElementById("prov-name");
+      const provSlug = document.getElementById("prov-slug");
+      const provImg = document.getElementById("prov-img");
+      const provBtn = document.getElementById("addProv");
+
+      const recTitle = document.getElementById("rec-title");
+      const recSlug = document.getElementById("rec-slug");
+      const recDesc = document.getElementById("rec-desc");
+      const recIng = document.getElementById("rec-ing");
+      const recStep = document.getElementById("rec-step");
+      const recImg = document.getElementById("rec-img");
+      const recBtn = document.getElementById("addRecipe");
+
+      /* ================= LOAD PROVINCES ================= */
+      async function loadProvinces() {
+        provList.innerHTML = "";
+        provSelect.innerHTML = "";
+
+        const { data } = await supabase
+          .from("provinces")
+          .select("*")
+          .order("name");
+
+        data.forEach((p) => {
+          const div = document.createElement("div");
+          div.innerHTML = `
+      <b>${p.name}</b> (${p.slug})
+      <button class="edit-prov" data-id="${p.id}">Edit</button>
+      <button class="del-prov" data-id="${p.id}">Hapus</button>
+    `;
+          provList.appendChild(div);
+
+          const opt = document.createElement("option");
+          opt.value = p.id;
+          opt.textContent = p.name;
+          provSelect.appendChild(opt);
+        });
+      }
+
+      /* ================= LOAD RECIPES ================= */
+      async function loadRecipes() {
+        recipeList.innerHTML = "";
+        const { data } = await supabase
+          .from("recipes")
+          .select("*")
+          .order("title");
+
+        data.forEach((r) => {
+          const div = document.createElement("div");
+          div.innerHTML = `
+      <b>${r.title}</b> (${r.slug})
+      <button class="edit-rec" data-id="${r.id}">Edit</button>
+      <button class="del-rec" data-id="${r.id}">Hapus</button>
+    `;
+          recipeList.appendChild(div);
+        });
+      }
+
+      /* ================= SAVE PROVINCE ================= */
+      provBtn.onclick = async () => {
+        const payload = { name: provName.value, slug: provSlug.value };
+
+        if (provImg.files[0]) {
+          const path = `provinces/${provSlug.value}.jpg`;
+          await supabase.storage
+            .from("images")
+            .upload(path, provImg.files[0], { upsert: true });
+          payload.image_url = supabase.storage
+            .from("images")
+            .getPublicUrl(path).data.publicUrl;
+        }
+
+        if (provBtn.dataset.edit) {
+          await supabase
+            .from("provinces")
+            .update(payload)
+            .eq("id", provBtn.dataset.edit);
+          delete provBtn.dataset.edit;
+          provBtn.innerText = "Simpan Provinsi";
+        } else {
+          await supabase.from("provinces").insert(payload);
+        }
+
+        provName.value = provSlug.value = "";
+        provImg.value = "";
+        loadProvinces();
+      };
+
+      /* ================= PROVINCE ACTION ================= */
+      provList.onclick = async (e) => {
+        const id = e.target.dataset.id;
+
+        if (e.target.classList.contains("edit-prov")) {
+          const { data } = await supabase
+            .from("provinces")
+            .select("*")
+            .eq("id", id)
+            .single();
+          provName.value = data.name;
+          provSlug.value = data.slug;
+          provBtn.dataset.edit = id;
+          provBtn.innerText = "Update Provinsi";
+        }
+
+        if (e.target.classList.contains("del-prov")) {
+          if (!confirm("Hapus provinsi & semua resepnya?")) return;
+          await supabase.from("recipes").delete().eq("province_id", id);
+          await supabase.from("provinces").delete().eq("id", id);
+          loadProvinces();
+          loadRecipes();
+        }
+      };
+
+      /* ================= SAVE RECIPE ================= */
+      recBtn.onclick = async () => {
+        const payload = {
+          title: recTitle.value,
+          slug: recSlug.value,
+          description: recDesc.value,
+          ingredients: recIng.value,
+          steps: recStep.value,
+          province_id: provSelect.value,
+        };
+
+        if (recImg.files[0]) {
+          const path = `recipes/${recSlug.value}.jpg`;
+          await supabase.storage
+            .from("images")
+            .upload(path, recImg.files[0], { upsert: true });
+          payload.image_url = supabase.storage
+            .from("images")
+            .getPublicUrl(path).data.publicUrl;
+        }
+
+        if (recBtn.dataset.edit) {
+          await supabase
+            .from("recipes")
+            .update(payload)
+            .eq("id", recBtn.dataset.edit);
+          delete recBtn.dataset.edit;
+          recBtn.innerText = "Simpan Resep";
+        } else {
+          await supabase.from("recipes").insert(payload);
+        }
+
+        recTitle.value =
+          recSlug.value =
+          recDesc.value =
+          recIng.value =
+          recStep.value =
+            "";
+        recImg.value = "";
+        loadRecipes();
+      };
+
+      /* ================= RECIPE ACTION ================= */
+      recipeList.onclick = async (e) => {
+        const id = e.target.dataset.id;
+
+        if (e.target.classList.contains("edit-rec")) {
+          const { data } = await supabase
+            .from("recipes")
+            .select("*")
+            .eq("id", id)
+            .single();
+          recTitle.value = data.title;
+          recSlug.value = data.slug;
+          recDesc.value = data.description;
+          recIng.value = data.ingredients;
+          recStep.value = data.steps;
+          provSelect.value = data.province_id;
+          recBtn.dataset.edit = id;
+          recBtn.innerText = "Update Resep";
+        }
+
+        if (e.target.classList.contains("del-rec")) {
+          if (!confirm("Hapus resep ini?")) return;
+          await supabase.from("recipes").delete().eq("id", id);
+          loadRecipes();
+        }
+      };
+
+      /* ================= INIT ================= */
+      await loadProvinces();
+      await loadRecipes();
+    </script>
+  </body>
+</html>

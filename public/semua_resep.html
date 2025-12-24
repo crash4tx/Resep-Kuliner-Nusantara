@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provinsi | Resep Nusantara</title>
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/semua_resep.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/public/img/ikon/vector.svg" alt="Logo">
+            <span>ResepNusantara</span>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">☰</label>
+
+        <ul class="menu">
+            <li><a href="beranda.html" class="active">Beranda</a></li>
+            <li><a href="provinsi.html">Provinsi</a></li>
+            <li><a href="peringkat.html">Peringkat</a></li>
+        </ul>
+    </nav>
+
+    <a href="beranda.html" class="back-wrapper">
+        <img src="/public/img/ikon/arrow.svg" class="arrow-img">
+        <p>Kembali ke Beranda</p>
+    </a>
+
+    <!-- CONTENT -->
+    <section class="provinsi-container">
+
+        <h1>Jelajahi Resep Tradisional Indonesia</h1>
+        <p class="subtitle">Pilih resep yang anda cari di sini</p>
+
+        <!-- SEARCH -->
+        <div class="search-area">
+            <input type="text" placeholder="Cari resep..." id="searchInput">
+        </div>
+
+        <section class="section">
+            <div class="card-grid">
+
+                <!-- CONTOH CARD -->
+                <a href="/public/resep_masakan/rendang.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/rendang.png">
+                        <h3>Rendang</h3>
+                        <div class="desc-shape">
+                            <p>Hidangan lauk pauk khas Minangkabau yang sudah mendunia</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/gudeg.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/gudeg.png">
+                        <h3>Gudeg</h3>
+                        <div class="desc-shape">
+                            <p>Makanan khas Yogyakarta berbahan nangka muda.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/rawon.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/rawon.png">
+                        <h3>Rawon</h3>
+                        <div class="desc-shape">
+                            <p>Sup daging berkuah hitam menggunakan kluwek khas Jawa Timur.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/mie_aceh.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/mie_aceh.jpg">
+                        <h3>Mie Aceh</h3>
+                        <div class="desc-shape">
+                            <p>Mie Aceh adalah mie kuning tebal berbumbu kari khas Aceh.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/sate_lilit_bali.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/sate_lilit_bali.png" alt="Sate Lilit Bali">
+                        <h3>Sate Lilit Bali</h3>
+                        <div class="desc-shape">
+                            <p>Daging cincang berbumbu yang dililit pada batang sereh dan dipanggang.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/lempah_kuning.html" class="card">
+                    <div class="card-img">
+                        <div class="card-img">
+                            <img src="/public/img/masakan/lempah_kuning.png">
+                            <h3>Lempah Kuning</h3>
+                            <div class="desc-shape">
+                                <p>Lempah kuning adalah sup ikan pedas asam khas Bangka Belitung.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/sate_bandeng.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/sate bandeng.png" alt="Sate Bandeng">
+                        <h3>Sate Bandeng</h3>
+                        <div class="desc-shape">
+                            <p>Sate bandeng khas Banten yang lembut tanpa duri dengan bumbu rempah.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/pendap.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/pendap.png">
+                        <h3>Pendap</h3>
+                        <div class="desc-shape">
+                            <p>Makanan khas Bengkulu berupa ikan yang dimasak dengan bumbu rempah tebal.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/binte_biluhuta.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/binte_biluhuta.png">
+                        <h3>Binte Biluhuta</h3>
+                        <div class="desc-shape">
+                            <p>Sup jagung khas Gorontalo dengan ikan dan udang</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/kerak_telor.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/kerak_telor.png">
+                        <h3>Kerak Telor</h3>
+                        <div class="desc-shape">
+                            <p>Kerak telor adalah makanan khas Betawi yang dibuat dari beras ketan, telur, dan ebi.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/gulai_tapak_ikan.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/gulai_tepak_ikan.png">
+                        <h3>Gulai Tapak Ikan</h3>
+                        <div class="desc-shape">
+                            <p>Masakan khas Jambi berbahan ikan giling yang dimasak dengan kuah santan gurih.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/seblak.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/seblak.png">
+                        <h3>Seblak</h3>
+                        <div class="desc-shape">
+                            <p>Makanan khas Bandung dengan kerupuk basah sebagai bahan utama.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/lumpia_semarang.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/lumpia_semarang.png">
+                        <h3>Lumpia Semarang</h3>
+                        <div class="desc-shape">
+                            <p>Makanan khas Jawa Tengah yang berisi rebung dibungkus kulit tipis.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/bubur_pedas.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/bubur_pedas.png">
+                        <h3>Bubur Pedas</h3>
+                        <div class="desc-shape">
+                            <p>Bubur khas Melayu Sambas berisi sayuran dan rempah lengkap.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/soto_banjar.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/soto_banjar.png">
+                        <h3>Soto Banjar</h3>
+                        <div class="desc-shape">
+                            <p>Soto ayam khas Banjar dengan aroma kayu manis dan rempah wangi.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/juhu_singkah.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/juhu_singkah.png">
+                        <h3>Juhu Singkah</h3>
+                        <div class="desc-shape">
+                            <p>Masakan khas Dayak menggunakan rotan muda dan rempah aromatik.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/amplang.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/amplang.png">
+                        <h3>Amplang</h3>
+                        <div class="desc-shape">
+                            <p>Ikan gabus yang dimasak dengan bumbu pedas manis khas Kutai.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/nasi_subut.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/nasi_subut.png">
+                        <h3>Nasi Subut</h3>
+                        <div class="desc-shape">
+                            <p>Nasi berwarna ungu yang dibuat dari campuran singkong dan ubi ungu.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/lakse.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/lakse.png">
+                        <h3>Lakse</h3>
+                        <div class="desc-shape">
+                            <p>Lakse adalah mie berkuah santan khas Melayu Kepulauan Riau.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/seruit.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/seruit.png">
+                        <h3>Seruit</h3>
+                        <div class="desc-shape">
+                            <p>Seruit adalah hidangan ikan khas Lampung yang disajikan dengan sambal terasi.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/arsik.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/arsik.png">
+                        <h3>Arsik</h3>
+                        <div class="desc-shape">
+                            <p>Arsik adalah masakan khas Batak berbahan ikan mas dengan bumbu kuning.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/gohu_ikan.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/gohu_ikan.png">
+                        <h3>Gohu Ikan</h3>
+                        <div class="desc-shape">
+                            <p>Sashimi khas Maluku Utara berbahan ikan tuna segar.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/sagu_bakar.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/sagu_bakar.png">
+                        <h3>Sagu Bakar</h3>
+                        <div class="desc-shape">
+                            <p>Makanan khas Maluku yang dibuat dari sagu panggang.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/sate_balap.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/sate_balap.png">
+                        <h3>Sate Balap</h3>
+                        <div class="desc-shape">
+                            <p>Sate daging sapi khas Lombok dengan bumbu pedas manis.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/se'i.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/se'i.png">
+                        <h3>Se'i</h3>
+                        <div class="desc-shape">
+                            <p>Daging asap khas NTT yang dimasak perlahan dengan kayu kosambi.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/kolak_papua.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/kolak_papua.png" alt="Kolak Papua">
+                        <h3>Kolak Papua</h3>
+                        <div class="desc-shape">
+                            <p>Kolak manis khas Papua Barat Daya berbahan dasar ubi dan pisang.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/ikan_kuah_kuning.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/ikan_kuah_kuning.png" alt="Ikan Kuah Kuning">
+                        <h3>Ikan Kuah Kuning</h3>
+                        <div class="desc-shape">
+                            <p>Ikan berkuah rempah kuning khas Papua Barat yang segar dan aromatik.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/udang_selingkuh.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/udang_selingkuh.png" alt="Udang Selingkuh">
+                        <h3>Udang Selingkuh</h3>
+                        <div class="desc-shape">
+                            <p>Udang berukuran besar khas wilayah pegunungan Papua.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/sinole.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/sinole.png" alt="Sinole">
+                        <h3>Sinole</h3>
+                        <div class="desc-shape">
+                            <p>Makanan terbuat dari singkong parut yang dimasak hingga lembut dan gurih.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/ikan_asap_dogiyai.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/ikan_asap_dogiyai.png" alt="Ikan Asap Dogiyai">
+                        <h3>Ikan Asap Dogiyai</h3>
+                        <div class="desc-shape">
+                            <p>Ikan asap khas Papua Tengah dengan aroma kuat dan rasa gurih.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/papeda.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/papeda.png">
+                        <h3>Papeda</h3>
+                        <div class="desc-shape">
+                            <p>Makanan khas Papua berbahan sagu yang disajikan dengan ikan kuah kuning.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/gulai_ikan_patin.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/gulai_patin.png">
+                        <h3>Gulai Ikan Patin</h3>
+                        <div class="desc-shape">
+                            <p>Gulai Patin adalah masakan khas Riau yang kaya rempah dan santan.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/jepa.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/jepa.png">
+                        <h3>Jepa</h3>
+                        <div class="desc-shape">
+                            <p>Makanan khas Mandar berbahan dasar singkong dan kelapa.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/coto_makassar.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/coto_makassar.png">
+                        <h3>Coto Makassar</h3>
+                        <div class="desc-shape">
+                            <p>Sup daging dan jeroan khas Makassar dengan bumbu kacang sangrai.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/kaledo.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/kaledo.png">
+                        <h3>Kaledo</h3>
+                        <div class="desc-shape">
+                            <p>Sup tulang sapi khas Donggala dengan cita rasa asam pedas.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/sate_pokea.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/sate_pokea.png">
+                        <h3>Sate Pokea</h3>
+                        <div class="desc-shape">
+                            <p>Sate kerang khas Kendari dengan cita rasa gurih dan pedas.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/cakalang_fufu.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/cakalang_fufu.png">
+                        <h3>Cakalang Fufu</h3>
+                        <div class="desc-shape">
+                            <p>Ikan cakalang asap khas Manado yang gurih dan kaya rempah.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/public/resep_masakan/pempek.html" class="card">
+                    <div class="card-img">
+                        <img src="/public/img/masakan/pempek.png">
+                        <h3>Pempek</h3>
+                        <div class="desc-shape">
+                            <p>Pempek adalah makanan berbahan ikan khas Palembang.</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+    </section>
+
+    <!-- SCRIPT SEARCH -->
+    <script>
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const value = this.value.toLowerCase();
+            const cards = document.querySelectorAll(".card");
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(value) ? "block" : "none";
+            });
+        });
+    </script>
+
+</body>
+
+</html>
