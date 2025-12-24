@@ -101,7 +101,7 @@
           await supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
-              redirectTo: location.origin + "/public/beranda.html",
+              redirectTo: location.origin + "index.html",
               queryParams: {
                 prompt: "select_account",
               },

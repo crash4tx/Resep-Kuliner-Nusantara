@@ -1,60 +1,64 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Provinsi | Resep Nusantara</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Provinsi | Resep Nusantara</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/provinsi.css">
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/provinsi.css" />
+  </head>
 
-<body>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="img/ikon/vector.svg" alt="Logo" />
+        <span>ResepNusantara</span>
+      </div>
 
-<nav class="navbar">
-  <div class="logo">
-    <img src="img/ikon/vector.svg" alt="Logo">
-    <span>ResepNusantara</span>
-  </div>
+      <ul class="menu">
+        <li><a href="beranda.html">Beranda</a></li>
+        <li><a href="provinsi.html" class="active">Provinsi</a></li>
+        <li><a href="peringkat.html">Peringkat</a></li>
+      </ul>
+    </nav>
 
-  <ul class="menu">
-    <li><a href="beranda.html">Beranda</a></li>
-    <li><a href="provinsi.html" class="active">Provinsi</a></li>
-    <li><a href="peringkat.html">Peringkat</a></li>
-  </ul>
-</nav>
+    <section class="provinsi-container">
+      <h1>Jelajahi Provinsi Indonesia</h1>
+      <p class="subtitle">
+        Pilih provinsi untuk melihat resep tradisional khas daerah
+      </p>
 
-<section class="provinsi-container">
-  <h1>Jelajahi Provinsi Indonesia</h1>
-  <p class="subtitle">Pilih provinsi untuk melihat resep tradisional khas daerah</p>
+      <div class="search-area">
+        <input type="text" placeholder="Cari Provinsi..." id="searchInput" />
+      </div>
 
-  <div class="search-area">
-    <input type="text" placeholder="Cari Provinsi..." id="searchInput">
-  </div>
+      <div class="provinsi-grid" id="provList"></div>
+    </section>
 
-  <div class="provinsi-grid" id="provList"></div>
-</section>
+    <script type="module">
+      import { supabase } from "./js/supabase.js";
 
-<script type="module">
-import { supabase } from './js/supabase.js';
+      const { data: provinces, error } = await supabase
+        .from("provinces")
+        .select("name, slug, image_url, recipe_count")
+        .order("name");
 
-const { data: provinces, error } = await supabase
-  .from('provinces')
-  .select('name, slug, image_url, recipe_count')
-  .order('name');
+      if (error) {
+        console.error(error);
+      }
 
-if (error) {
-  console.error(error);
-}
+      const container = document.getElementById("provList");
 
-const container = document.getElementById("provList");
+      provinces.forEach((p) => {
+        const a = document.createElement("a");
+        a.className = "provinsi-card";
+        a.href = `daftar_resep.html?provinsi=${p.slug}`;
 
-provinces.forEach(p => {
-  const a = document.createElement("a");
-  a.className = "provinsi-card";
-  a.href = `daftar_resep.html?provinsi=${p.slug}`;
-
-  a.innerHTML = `
+        a.innerHTML = `
     <img src="${p.image_url}" alt="${p.name}">
     <div class="info">
       <h3>${p.name}</h3>
@@ -62,19 +66,20 @@ provinces.forEach(p => {
     </div>
   `;
 
-  container.appendChild(a);
-});
+        container.appendChild(a);
+      });
 
-// SEARCH
-document.getElementById("searchInput").addEventListener("input", function () {
-  const value = this.value.toLowerCase();
-  document.querySelectorAll(".provinsi-card").forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(value)
-      ? "flex"
-      : "none";
-  });
-});
-</script>
-
-</body>
+      // SEARCH
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function () {
+          const value = this.value.toLowerCase();
+          document.querySelectorAll(".provinsi-card").forEach((card) => {
+            card.style.display = card.innerText.toLowerCase().includes(value)
+              ? "flex"
+              : "none";
+          });
+        });
+    </script>
+  </body>
 </html>

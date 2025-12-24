@@ -1,218 +1,224 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resep Nusantara</title>
 
     <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="/public/css/beranda.css">
-</head>
+    <link rel="stylesheet" href="css/beranda.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- NAVBAR -->
     <nav class="navbar">
+      <div class="logo">
+        <img src="img/ikon/vector.svg" />
+        <span>ResepNusantara</span>
+      </div>
 
-        <div class="logo">
-            <img src="/public/img/ikon/vector.svg">
-            <span>ResepNusantara</span>
-        </div>
+      <!-- TOGGLE HAMBURGER -->
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="hamburger">☰</label>
 
-        <!-- TOGGLE HAMBURGER -->
-        <input type="checkbox" id="menu-toggle">
-        <label for="menu-toggle" class="hamburger">☰</label>
+      <ul class="menu">
+        <li><a href="beranda.html" class="active">Beranda</a></li>
+        <li><a href="provinsi.html">Provinsi</a></li>
+        <li><a href="peringkat.html">Peringkat</a></li>
 
-
-        <ul class="menu">
-            <li><a href="beranda.html" class="active">Beranda</a></li>
-            <li><a href="provinsi.html">Provinsi</a></li>
-            <li><a href="peringkat.html">Peringkat</a></li>
-
-            <!-- LOGIN / LOGOUT -->
-            <li class="menu-auth">
-                <a href="/public/login.html" id="authBtn" class="auth-btn login">
-                    <span class="icon">↪</span>
-                    <span class="text">Login</span>
-                </a>
-            </li>
-        </ul>
-
+        <!-- LOGIN / LOGOUT -->
+        <li class="menu-auth">
+          <a href="login.html" id="authBtn" class="auth-btn login">
+            <span class="icon">↪</span>
+            <span class="text">Login</span>
+          </a>
+        </li>
+      </ul>
     </nav>
 
     <!-- HERO -->
     <header class="hero">
-        <img src="/public/img/masakan/hero.jpg" class="hero-img" alt="Hero Image">
+      <img src="img/masakan/hero.jpg" class="hero-img" alt="Hero Image" />
 
-        <div class="hero-content">
-            <h1>Jelajahi Rasa dari<br>Sabang sampai Merauke</h1>
-            <p>Temukan ribuan resep tradisional dari 38 provinsi di Indonesia</p>
-            <a href="/public/semua_resep.html">
-                <button class="btn-primary">Lihat Semua Resep</button>
-            </a>
-        </div>
+      <div class="hero-content">
+        <h1>Jelajahi Rasa dari<br />Sabang sampai Merauke</h1>
+        <p>Temukan ribuan resep tradisional dari 38 provinsi di Indonesia</p>
+        <a href="semua_resep.html">
+          <button class="btn-primary">Lihat Semua Resep</button>
+        </a>
+      </div>
     </header>
 
     <!-- REKOMENDASI -->
     <section class="section">
-        <h2>Rekomendasi Mingguan</h2>
-        <p class="sub">Resep pilihan minggu ini yang wajib dicoba</p>
+      <h2>Rekomendasi Mingguan</h2>
+      <p class="sub">Resep pilihan minggu ini yang wajib dicoba</p>
 
-        <div class="card-grid">
+      <div class="card-grid">
+        <a href="resep_masakan/rendang.html" class="card">
+          <div class="card-img">
+            <img src="img/masakan/rendang.png" />
+            <h3>Rendang</h3>
+            <div class="desc-shape">
+              <p>Rendang adalah hidangan lauk pauk khas Minangkabau.</p>
+            </div>
+          </div>
+        </a>
 
-            <a href="/public/resep_masakan/rendang.html" class="card">
-                <div class="card-img">
-                    <img src="/public/img/masakan/rendang.png">
-                    <h3>Rendang</h3>
-                    <div class="desc-shape">
-                        <p>Rendang adalah hidangan lauk pauk khas Minangkabau.</p>
-                    </div>
-                </div>
-            </a>
+        <a href="resep_masakan/gudeg.html" class="card">
+          <div class="card-img">
+            <img src="img/masakan/gudeg.png" />
+            <h3>Gudeg</h3>
+            <div class="desc-shape">
+              <p>
+                Makanan khas Yogyakarta berbahan nangka muda dimasak dalam kuah
+                santan manis.
+              </p>
+            </div>
+          </div>
+        </a>
 
-            <a href="/public/resep_masakan/gudeg.html" class="card">
-                <div class="card-img">
-                    <img src="/public/img/masakan/gudeg.png">
-                    <h3>Gudeg</h3>
-                    <div class="desc-shape">
-                        <p>Makanan khas Yogyakarta berbahan nangka muda dimasak dalam kuah santan manis.</p>
-                    </div>
-                </div>
-            </a>
+        <a href="resep_masakan/rawon.html" class="card">
+          <div class="card-img">
+            <img src="img/masakan/rawon.png" />
+            <h3>Rawon</h3>
+            <div class="desc-shape">
+              <p>
+                Sup daging berkuah hitam khas Jawa Timur yang menggunakan
+                kluwek.
+              </p>
+            </div>
+          </div>
+        </a>
 
-            <a href="/public/resep_masakan/rawon.html" class="card">
-                <div class="card-img">
-                    <img src="/public/img/masakan/rawon.png">
-                    <h3>Rawon</h3>
-                    <div class="desc-shape">
-                        <p>Sup daging berkuah hitam khas Jawa Timur yang menggunakan kluwek.</p>
-                    </div>
-                </div>
-            </a>
+        <a href="resep_masakan/sate_lilit_bali.html" class="card">
+          <div class="card-img">
+            <img src="img/masakan/sate_lilit_bali.png" />
+            <h3>Sate Lilit Bali</h3>
+            <div class="desc-shape">
+              <p>
+                Daging cincang berbumbu yang dililit pada batang sereh dan
+                dipanggang.
+              </p>
+            </div>
+          </div>
+        </a>
 
-            <a href="/public/resep_masakan/sate_lilit_bali.html" class="card">
-                <div class="card-img">
-                    <img src="/public/img/masakan/sate_lilit_bali.png">
-                    <h3>Sate Lilit Bali</h3>
-                    <div class="desc-shape">
-                        <p>Daging cincang berbumbu yang dililit pada batang sereh dan dipanggang.</p>
-                    </div>
-                </div>
-            </a>
+        <a href="resep_masakan/pempek.html" class="card">
+          <div class="card-img">
+            <img src="img/masakan/pempek.png" />
+            <h3>Pempek</h3>
+            <div class="desc-shape">
+              <p>Pempek adalah makanan berbahan ikan khas Palembang.</p>
+            </div>
+          </div>
+        </a>
 
-            <a href="/public/resep_masakan/pempek.html" class="card">
-                <div class="card-img">
-                    <img src="/public/img/masakan/pempek.png">
-                    <h3>Pempek</h3>
-                    <div class="desc-shape">
-                        <p>Pempek adalah makanan berbahan ikan khas Palembang.</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/public/resep_masakan/papeda.html" class="card">
-                <div class="card-img">
-                    <img src="/public/img/masakan/Papeda.png">
-                    <h3>Papeda</h3>
-                    <div class="desc-shape">
-                        <p>Makanan khas Papua berbahan sagu yang disajikan dengan ikan kuah kuning.</p>
-                    </div>
-                </div>
-            </a>
-
-        </div>
+        <a href="resep_masakan/papeda.html" class="card">
+          <div class="card-img">
+            <img src="img/masakan/Papeda.png" />
+            <h3>Papeda</h3>
+            <div class="desc-shape">
+              <p>
+                Makanan khas Papua berbahan sagu yang disajikan dengan ikan kuah
+                kuning.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     </section>
 
     <!-- PROVINSI -->
     <section class="section">
-        <h2>Provinsi Terpopuler</h2>
-        <p class="sub">Provinsi dengan resep terpopuler</p>
+      <h2>Provinsi Terpopuler</h2>
+      <p class="sub">Provinsi dengan resep terpopuler</p>
 
-        <div class="prov-grid">
+      <div class="prov-grid">
+        <a href="resep_masakan per provinsi/aceh.html" class="prov">
+          <img src="img/provinsi/aceh.png" alt="Aceh" />
+          <h3>Aceh</h3>
+        </a>
 
-            <a href="/public/resep_masakan per provinsi/aceh.html" class="prov">
-                <img src="/public/img/provinsi/aceh.png" alt="Aceh">
-                <h3>Aceh</h3>
-            </a>
+        <a href="resep_masakan per provinsi/jawa_barat.html" class="prov">
+          <img src="img/provinsi/jawa_barat.png" alt="Jawa Barat" />
+          <h3>Jawa Barat</h3>
+        </a>
 
-            <a href="/public/resep_masakan per provinsi/jawa_barat.html" class="prov">
-                <img src="/public/img/provinsi/jawa_barat.png" alt="Jawa Barat">
-                <h3>Jawa Barat</h3>
-            </a>
+        <a href="resep_masakan per provinsi/jakarta.html" class="prov">
+          <img src="img/provinsi/jakarta.png" alt="DKI Jakarta" />
+          <h3>DKI Jakarta</h3>
+        </a>
 
-            <a href="/public/resep_masakan per provinsi/jakarta.html" class="prov">
-                <img src="/public/img/provinsi/jakarta.png" alt="DKI Jakarta">
-                <h3>DKI Jakarta</h3>
-            </a>
-
-            <a href="/public/resep_masakan per provinsi/bali.html" class="prov">
-                <img src="/public/img/provinsi/bali.png" alt="Bali">
-                <h3>Bali</h3>
-            </a>
-
-        </div>
+        <a href="resep_masakan per provinsi/bali.html" class="prov">
+          <img src="img/provinsi/bali.png" alt="Bali" />
+          <h3>Bali</h3>
+        </a>
+      </div>
     </section>
 
     <!-- CTA -->
     <section class="cta-box">
-        <h2>Temukan Resep Tradisional Lainnya</h2>
-        <p>Jelajahi kekayaan kuliner Nusantara dan temukan resep favorit dari setiap provinsi di Indonesia</p>
-        <a href="provinsi.html">
-            <button class="btn-light">Jelajahi semua provinsi</button>
-        </a>
+      <h2>Temukan Resep Tradisional Lainnya</h2>
+      <p>
+        Jelajahi kekayaan kuliner Nusantara dan temukan resep favorit dari
+        setiap provinsi di Indonesia
+      </p>
+      <a href="provinsi.html">
+        <button class="btn-light">Jelajahi semua provinsi</button>
+      </a>
     </section>
 
-<script type="module">
-  import { supabase } from './js/supabase.js';
+    <script type="module">
+      import { supabase } from "./js/supabase.js";
 
-  const authBtn = document.getElementById("authBtn");
+      const authBtn = document.getElementById("authBtn");
 
-  async function updateAuthButton() {
-    const { data } = await supabase.auth.getSession();
-    const session = data.session;
+      async function updateAuthButton() {
+        const { data } = await supabase.auth.getSession();
+        const session = data.session;
 
-    if (session) {
-      // USER LOGIN
-      authBtn.classList.remove("login");
-      authBtn.classList.add("logout");
-      authBtn.querySelector(".icon").textContent = "↩";
-      authBtn.querySelector(".text").textContent = "Logout";
-      authBtn.href = "#";
-    } else {
-      // USER BELUM LOGIN
-      authBtn.classList.remove("logout");
-      authBtn.classList.add("login");
-      authBtn.querySelector(".icon").textContent = "↪";
-      authBtn.querySelector(".text").textContent = "Login";
-      authBtn.href = "login.html";
-    }
-  }
+        if (session) {
+          // USER LOGIN
+          authBtn.classList.remove("login");
+          authBtn.classList.add("logout");
+          authBtn.querySelector(".icon").textContent = "↩";
+          authBtn.querySelector(".text").textContent = "Logout";
+          authBtn.href = "#";
+        } else {
+          // USER BELUM LOGIN
+          authBtn.classList.remove("logout");
+          authBtn.classList.add("login");
+          authBtn.querySelector(".icon").textContent = "↪";
+          authBtn.querySelector(".text").textContent = "Login";
+          authBtn.href = "login.html";
+        }
+      }
 
-  authBtn.addEventListener("click", async (e) => {
-    const { data } = await supabase.auth.getSession();
+      authBtn.addEventListener("click", async (e) => {
+        const { data } = await supabase.auth.getSession();
 
-    if (data.session) {
-      // LOGOUT
-      e.preventDefault();
-      await supabase.auth.signOut();
-      window.location.reload();
-    }
-    // kalau belum login → biarin ke login.html
-  });
+        if (data.session) {
+          // LOGOUT
+          e.preventDefault();
+          await supabase.auth.signOut();
+          window.location.reload();
+        }
+        // kalau belum login → biarin ke login.html
+      });
 
-  // Update saat halaman dibuka
-  updateAuthButton();
+      // Update saat halaman dibuka
+      updateAuthButton();
 
-  // Update realtime kalau auth berubah (login Google, dll)
-  supabase.auth.onAuthStateChange(() => {
-    updateAuthButton();
-  });
-</script>
-
-</body>
-
+      // Update realtime kalau auth berubah (login Google, dll)
+      supabase.auth.onAuthStateChange(() => {
+        updateAuthButton();
+      });
+    </script>
+  </body>
 </html>

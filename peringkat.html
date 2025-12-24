@@ -10,14 +10,14 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="/public/css/peringkat.css" />
+    <link rel="stylesheet" href="css/peringkat.css" />
   </head>
 
   <body>
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="logo">
-        <img src="/public/img/ikon/arrow.svg" alt="Logo" />
+        <img src="img/ikon/arrow.svg" alt="Logo" />
         <span>ResepNusantara</span>
       </div>
 
@@ -31,7 +31,7 @@
     <!-- HEADER -->
     <section class="header">
       <div class="header-icon">
-        <img src="/public/img/ikon/cup.svg" alt="header-icon" />
+        <img src="img/ikon/cup.svg" alt="header-icon" />
       </div>
       <h1>Peringkat Provinsi</h1>
       <p>Provinsi paling populer berdasarkan total like resep</p>
@@ -133,13 +133,13 @@
         const rankCell = row.querySelector(".rank-cell");
         if (index === 0)
           rankCell.innerHTML =
-            '<img src="/public/img/ikon/peringkat_1.svg" class="medal">';
+            '<img src="img/ikon/peringkat_1.svg" class="medal">';
         else if (index === 1)
           rankCell.innerHTML =
-            '<img src="/public/img/ikon/peringkat_2.svg" class="medal">';
+            '<img src="img/ikon/peringkat_2.svg" class="medal">';
         else if (index === 2)
           rankCell.innerHTML =
-            '<img src="/public/img/ikon/peringkat_3.svg" class="medal">';
+            '<img src="img/ikon/peringkat_3.svg" class="medal">';
         else rankCell.innerText = `#${index + 1}`;
 
         row.querySelector(".prov-cell").innerText = item.province;

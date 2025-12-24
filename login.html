@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Masuk</title>
-    <link rel="stylesheet" href="/public/css/login.css" />
+    <link rel="stylesheet" href="css/login.css" />
   </head>
 
   <body>
     <div class="container">
-      <a href="/public/beranda.html" class="back">
-        <img src="/public/img/ikon/arrow.svg" alt="Kembali" />
+      <a href="index.html" class="back">
+        <img src="img/ikon/arrow.svg" alt="Kembali" />
         <span>Kembali</span>
       </a>
 
@@ -35,16 +35,16 @@
         placeholder="Masukkan password"
       />
 
-      <a href="/public/lupa_password.html" class="forgot">Lupa password?</a>
+      <a href="lupa_password.html" class="forgot">Lupa password?</a>
 
       <button class="btn-main" id="btnLogin">Masuk</button>
 
       <button class="btn-google">
-        <img src="/public/img/ikon/logo google.svg" /> Masuk dengan Google
+        <img src="img/ikon/logo google.svg" /> Masuk dengan Google
       </button>
 
       <p class="bottom-text">
-        Belum punya akun? <a href="/public/registrasi.html">Daftar di sini</a>
+        Belum punya akun? <a href="registrasi.html">Daftar di sini</a>
       </p>
     </div>
 
@@ -96,9 +96,9 @@
 
         // ================= REDIRECT =================
         if (profile.role === "admin") {
-          window.location.href = "/public/admin.html";
+          window.location.href = "admin.html";
         } else {
-          window.location.href = "/public/beranda.html";
+          window.location.href = "index.html";
         }
       });
 
@@ -109,7 +109,7 @@
           await supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
-              redirectTo: location.origin + "/public/beranda.html",
+              redirectTo: location.origin + "beranda.html",
               queryParams: {
                 prompt: "select_account",
               },

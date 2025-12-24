@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Admin – Resep Nusantara</title>
-    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
   </head>
   <body>
     <h1>Admin Dashboard</h1>
@@ -46,7 +46,7 @@
     </section>
 
     <script type="module">
-      import { supabase } from "/public/js/supabase.js";
+      import { supabase } from "/js/supabase.js";
 
       /* ================= AUTH & ROLE CHECK ================= */
       const {
@@ -55,7 +55,7 @@
 
       if (!user) {
         alert("Login dulu");
-        location.href = "/public/login.html";
+        location.href = "login.html";
         throw "NO USER";
       }
 
