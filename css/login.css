@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+/* Container Frame */
+.container {
+    background: #fff;
+    width: 92%;
+    max-width: 450px;
+    padding: 40px 30px;
+    border-radius: 25px;
+    animation: fadeIn 0.4s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Animasi Fade Masuk */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;              /* jarak icon dan teks */
+    cursor: pointer;
+    margin-bottom: 25px;
+    text-decoration: none;
+    color: #000;           /* warna teks */
+    font-size: 15px;
+}
+
+.back img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Efek hover (opsional tapi recommended) */
+.back:hover {
+    opacity: 0.7;
+}
+
+/* Titles */
+.title {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+.subtitle {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* Labels */
+.label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Inputs */
+.input-field {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.6px solid #dcdcdc;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease;
+}
+.input-field:focus {
+    outline: none;
+    border-color: #d84b48;
+    background: #fff8f8;
+    box-shadow: 0 0 0 2px #ffd8d8;
+}
+
+/* Error Shake */
+.shake {
+    animation: shake 0.25s ease;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(-4px); }
+    60% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+/* Forgot text */
+.forgot {
+    font-size: 15px;
+    color: #fe0202;
+    margin-top: -12px;
+    margin-bottom: 22px;
+    text-decoration: none;
+}
+
+/* Buttons */
+.btn-main {
+    width: 100%;
+    background: #d84b48;
+    color: #fff;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 18px;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+.btn-main:hover {
+    background: #c93f3c;
+    transform: translateY(-2px);
+}
+
+/* Google Button */
+.btn-google {
+    width: 100%;
+    background: white;
+    border: 1.5px solid #dcdcdc;
+    padding: 7px;
+    border-radius: 20px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-google:hover {
+    background: #f5f5f5;
+}
+
+/* Footer text */
+.bottom-text {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 25px;
+}
+.bottom-text a {
+    font-weight: 600;
+    color: black;
+    text-decoration: none;
+}
+
+/* Error message */
+.error-msg {
+    color: #d84b48;
+    background: #ffe5e5;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border: 1px solid #dcb3b3;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}

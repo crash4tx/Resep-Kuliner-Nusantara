@@ -1,0 +1,472 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #fff;
+    color: #222;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar {
+    width: 100%;
+    padding: 22px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 36px;
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 900;
+}
+
+.menu a:hover,
+.menu .active {
+    color: #D64541;
+}
+
+/* ==================== AUTH BUTTON ==================== */
+.menu-auth {
+    margin-left: 10px;
+}
+
+.auth-btn {
+    min-width: 110px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #fff;
+    transition: .3s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    text-align: center;
+}
+
+.auth-btn,
+.auth-btn span {
+    color: #fff !important;
+}
+
+.auth-btn.login {
+    background: linear-gradient(90deg, #2ECC71, #27AE60);
+}
+
+.auth-btn.logout {
+    background: linear-gradient(90deg, #F87976, #D64541);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    font-size: 34px;
+    cursor: pointer;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background: #fff;
+        width: 220px;
+        display: none;
+        flex-direction: column;
+        padding: 20px;
+        align-items: flex-start;
+        text-align: left;
+        gap: 18px;
+        border-radius: 12px 0 12px 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    #menu-toggle:checked ~ .menu {
+        display: flex;
+    }
+}
+
+
+/* ==================== HERO ==================== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(55%);
+}
+
+/* HERO TEXT KIRI */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    transform: translateY(-50%);
+    color: white;
+    text-align: left;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+.hero-content p {
+    margin-top: 12px;
+    font-size: 28px;
+}
+
+/* BUTTON INTERAKTIF (Versi Baru) */
+.btn-primary {
+    margin-top: 22px;
+    padding: 20px 28px;
+
+    background: #D64541;
+    color: #fff;
+
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.09) translateY(-4px);
+    background-color: #b83935;
+    color: #ffffff;
+
+    box-shadow:
+        0 10px 22px rgba(255, 255, 255, 0.35),
+        0 4px 10px rgba(0,0,0,0.18);
+}
+
+
+/* ================= RESPONSIVE HERO ================= */
+
+/* Tablet Landscape & Medium Devices */
+@media (max-width: 900px) {
+    .hero {
+        height: 420px;
+    }
+
+    .hero-content {
+        left: 30px;
+        max-width: 90%;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-content p {
+        font-size: 20px;
+    }
+
+    .btn-primary {
+        font-size: 18px;
+        padding: 16px 24px;
+    }
+}
+
+/* HP Besar - HP Kecil */
+@media (max-width: 600px) {
+    .hero {
+        height: 360px;
+    }
+
+    .hero-content {
+        left: 20px;
+        max-width: 92%;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    .btn-primary {
+        font-size: 15px;
+        padding: 12px 20px;
+        border-radius: 24px;
+    }
+}
+
+
+/* ==================== SECTION ==================== */
+.section {
+    padding: 55px 60px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 48px;
+}
+
+.sub {
+    margin-bottom: 50px;
+    font-size: 24px;
+    color: #666;
+}
+
+/* ==================== CARD GRID ==================== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 408px));
+    justify-content: center;
+    gap: 25px;
+}
+
+.card {
+    width: 100%;
+    height: 275px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: .35s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .35s ease;
+}
+
+.card:hover img {
+    transform: scale(1.15);
+}
+
+.card-img h3 {
+    position: absolute;
+    bottom: 90px;
+    left: 40px;
+    font-size: 34px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.5);
+}
+
+.desc-shape {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #ffffffeb;
+    padding: 25px;
+}
+
+/* ==================== PROV GRID ==================== */
+.prov-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 35px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.prov {
+    cursor: pointer;
+    transition: .25s ease;
+     text-decoration: none;   /* supaya tidak ada garis biru */
+    color: inherit;          /* agar teks warnanya normal */
+}
+
+.prov:hover {
+    transform: translateY(-8px);
+}
+
+.prov img {
+    width: 100%;
+    height: 270px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.prov h3 {
+    font-size: 32px;
+    margin-top: 20px;
+}
+
+/* ============ ANIMASI FADE UP ============ */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== CTA BOX ==================== */
+.cta-box {
+    margin: 60px;
+    padding: 60px;
+    text-align: center;
+
+    /* background dinamis */
+    background: linear-gradient(90deg, #F87976, #D64541),
+                url('https://images.unsplash.com/photo-1604908177522-432517356c80?q=80') center/cover no-repeat;
+    border-radius: 22px;
+    color: white;
+}
+
+/* ==================== TITLE ==================== */
+.cta-box h2 {
+    font-size: 38px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+
+/* ==================== PARAGRAPH ==================== */
+.cta-box p {
+    margin-top: 10px;
+    font-size: 20px;
+    opacity: 0.95;
+}
+
+/* ==================== TOMBOL INTERAKTIF ==================== */
+.btn-light {
+    margin-top: 30px;
+    padding: 18px 28px;
+
+    background: #fff;
+    color: #d42f2f;
+    border: none;
+    border-radius: 30px;
+
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+/* INTERAKSI HOVER SUPER LEMBUT + HIDUP */
+.btn-light:hover {
+    transform: scale(1.09) translateY(-4px);
+    background-color: #ffeaea;
+    color: #b91919;
+
+    box-shadow: 
+        0 10px 22px rgba(255, 255, 255, 0.35),
+        0 4px 10px rgba(0,0,0,0.18);
+}
+
+/* ==================== RESPONSIF ==================== */
+@media (max-width: 768px) {
+    .cta-box {
+        margin: 25px;
+        padding: 40px;
+    }
+
+    .cta-box h2 {
+        font-size: 30px;
+    }
+
+    .cta-box p {
+        font-size: 17px;
+    }
+
+    .btn-light {
+        padding: 15px 22px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-box {
+        margin: 20px;
+        padding: 30px;
+    }
+
+    .cta-box h2 {
+        font-size: 26px;
+    }
+
+    .cta-box p {
+        font-size: 15px;
+    }
+
+    .btn-light {
+        padding: 13px 20px;
+        font-size: 15px;
+    }
+}

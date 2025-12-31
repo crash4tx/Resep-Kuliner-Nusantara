@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peringkat Provinsi – Resep Nusantara</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/peringkat.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="img/ikon/arrow.svg" alt="Logo" />
+        <span>ResepNusantara</span>
+      </div>
+
+      <ul class="menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="provinsi.html">Provinsi</a></li>
+        <li><a href="peringkat.html" class="active">Peringkat</a></li>
+      </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <section class="header">
+      <div class="header-icon">
+        <img src="img/ikon/cup.svg" alt="header-icon" />
+      </div>
+      <h1>Peringkat Provinsi</h1>
+      <p>Provinsi paling populer berdasarkan total like resep</p>
+    </section>
+
+    <!-- TABLE -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Urutan</th>
+            <th>Provinsi</th>
+            <th>Makanan Terbaik</th>
+            <th>Total Like</th>
+          </tr>
+        </thead>
+
+        <tbody id="ranking-body">
+          <!-- TEMPLATE -->
+          <tr id="rank-template" style="display: none">
+            <td class="rank-cell"></td>
+            <td class="prov-cell"></td>
+            <td class="food">
+              <img />
+              <span></span>
+            </td>
+            <td><span class="badge"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ================= SCRIPT ================= -->
+    <script type="module">
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+      const supabase = createClient(
+        "https://sgjahqdlynjxjnuuclbt.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnamFocWRseW5qeGpudXVjbGJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYxNjg1OTEsImV4cCI6MjA4MTc0NDU5MX0.TFUVBz0hx1FJPpB6sydVszx9HL0iQXQZDdEvy6POhh4"
+      );
+
+      const tbody = document.getElementById("ranking-body");
+      const template = document.getElementById("rank-template");
+
+      const { data, error } = await supabase.from("provinces").select(`
+    id,
+    name,
+    recipes:recipes!recipes_province_id_fkey (
+      id,
+      title,
+      image_url,
+      recipe_votes (
+        vote
+      )
+    )
+  `);
+
+      if (error) {
+        console.error(error);
+        alert("Gagal mengambil data peringkat");
+      }
+
+      const ranked = data
+        .map((p) => {
+          let totalLike = 0;
+          let bestFood = null;
+          let bestFoodLike = 0;
+
+          p.recipes.forEach((r) => {
+            const likes = r.recipe_votes.filter(
+              (v) => v.vote === "like"
+            ).length;
+
+            totalLike += likes;
+
+            if (likes > bestFoodLike) {
+              bestFoodLike = likes;
+              bestFood = r;
+            }
+          });
+
+          if (totalLike === 0) return null;
+
+          return {
+            province: p.name,
+            food: bestFood.title,
+            image: bestFood.image_url,
+            totalLike,
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.totalLike - a.totalLike);
+
+      ranked.forEach((item, index) => {
+        const row = template.cloneNode(true);
+        row.style.display = "";
+        row.removeAttribute("id");
+
+        const rankCell = row.querySelector(".rank-cell");
+        if (index === 0)
+          rankCell.innerHTML =
+            '<img src="img/ikon/peringkat_1.svg" class="medal">';
+        else if (index === 1)
+          rankCell.innerHTML =
+            '<img src="img/ikon/peringkat_2.svg" class="medal">';
+        else if (index === 2)
+          rankCell.innerHTML =
+            '<img src="img/ikon/peringkat_3.svg" class="medal">';
+        else rankCell.innerText = `#${index + 1}`;
+
+        row.querySelector(".prov-cell").innerText = item.province;
+        row.querySelector(".food img").src = item.image;
+        row.querySelector(".food span").innerText = item.food;
+        row.querySelector(".badge").innerText =
+          item.totalLike.toLocaleString("id-ID");
+
+        tbody.appendChild(row);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semua Resep | Resep Nusantara</title>
+
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS (TIDAK DIUBAH) -->
+    <link rel="stylesheet" href="css/semua_resep.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="img/ikon/vector.svg" alt="Logo" />
+        <span>ResepNusantara</span>
+      </div>
+
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="hamburger">☰</label>
+
+      <ul class="menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="provinsi.html">Provinsi</a></li>
+        <li><a href="peringkat.html">Peringkat</a></li>
+      </ul>
+    </nav>
+
+    <a href="index.html" class="back-wrapper">
+      <img src="img/ikon/arrow.svg" class="arrow-img" />
+      <p>Kembali ke Beranda</p>
+    </a>
+
+    <!-- CONTENT -->
+    <section class="provinsi-container">
+      <h1>Jelajahi Resep Tradisional Indonesia</h1>
+      <p class="subtitle">Pilih resep yang anda cari di sini</p>
+
+      <!-- SEARCH -->
+      <div class="search-area">
+        <input type="text" placeholder="Cari resep..." id="searchInput" />
+      </div>
+
+      <section class="section">
+        <!-- ❗ GRID TETAP -->
+        <div class="card-grid" id="recipeGrid"></div>
+      </section>
+    </section>
+
+    <!-- ================= SCRIPT ================= -->
+    <script type="module">
+      import { supabase } from "./js/supabase.js";
+
+      const grid = document.getElementById("recipeGrid");
+      const searchInput = document.getElementById("searchInput");
+
+      // ================= LOAD SEMUA RESEP =================
+      const { data: recipes, error } = await supabase
+        .from("recipes")
+        .select("slug, title, image_url, teaser")
+        .order("title");
+
+      if (error) {
+        console.error("RECIPE ERROR:", error);
+      } else {
+        renderRecipes(recipes);
+      }
+
+      function renderRecipes(data) {
+        grid.innerHTML = "";
+
+        data.forEach((r) => {
+          const a = document.createElement("a");
+          a.href = `resep.html?slug=${r.slug}`;
+          a.className = "card";
+
+          a.innerHTML = `
+            <div class="card-img">
+              <img src="${r.image_url}" alt="${r.title}" />
+              <h3>${r.title}</h3>
+              <div class="desc-shape">
+                <p>${r.teaser || ""}</p>
+              </div>
+            </div>
+          `;
+
+          grid.appendChild(a);
+        });
+      }
+
+      // ================= SEARCH (CLIENT SIDE) =================
+      searchInput.addEventListener("input", () => {
+        const keyword = searchInput.value.toLowerCase();
+
+        const filtered = recipes.filter((r) =>
+          r.title.toLowerCase().includes(keyword) ||
+          (r.teaser || "").toLowerCase().includes(keyword)
+        );
+
+        renderRecipes(filtered);
+      });
+    </script>
+  </body>
+</html>

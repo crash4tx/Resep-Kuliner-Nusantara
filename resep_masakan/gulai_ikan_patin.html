@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulai Ikan Patin – Resep Nusantara</title>
+
+    <link rel="stylesheet" href="resep_masakan.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../img ikon/vector.svg">
+            <span>ResepNusantara</span>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">☰</label>
+
+        <ul class="menu">
+            <li><a href="../beranda.html">Beranda</a></li>
+            <li><a href="../provinsi.html" class="active">Provinsi</a></li>
+            <li><a href="../peringkat.html">Peringkat</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <img src="../img masakan/gulai_patin.png" class="hero-img">
+
+        <div class="hero-content">
+            <a href="../daftar_resep/riau.html" class="btn-back">
+                <img src="../img ikon/arrow.svg" alt="">
+                <span>Kembali</span>
+            </a>
+
+            <p class="tag">Riau</p>
+            <h1>Gulai Ikan Patin</h1>
+            <div class="rating-wrapper">
+                <button class="rate-btn" id="likeBtn">
+                    <img src="../img ikon/like.svg" alt="Like">
+                </button>
+
+                <button class="rate-btn" id="dislikeBtn">
+                    <img src="../img ikon/dislike.svg" alt="Dislike">
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Tentang Menu Ini</h2>
+        <p class="sub">
+            Gulai Ikan Patin adalah masakan khas Riau dengan kuah kuning pekat dari kunyit dan rempah,
+            menghasilkan rasa gurih dan aromatik.
+        </p>
+    </section>
+
+    <div class="detail-container">
+
+        <div class="detail-card">
+            <h3>Resep</h3>
+            <ul>
+                <li>500 g ikan patin</li>
+                <li>500 ml santan</li>
+                <li>3 siung bawang putih</li>
+                <li>5 siung bawang merah</li>
+                <li>1 ruas kunyit</li>
+                <li>1 ruas jahe</li>
+                <li>2 batang serai</li>
+                <li>3 lembar daun jeruk</li>
+                <li>Garam & gula secukupnya</li>
+            </ul>
+        </div>
+
+        <div class="detail-card">
+            <h3>Cara Mengolah</h3>
+            <ul>
+                <li>Haluskan bawang, kunyit, dan jahe.</li>
+                <li>Tumis hingga wangi.</li>
+                <li>Tambahkan santan dan aduk rata.</li>
+                <li>Masukkan serai dan daun jeruk.</li>
+                <li>Masukkan ikan patin.</li>
+                <li>Masak hingga ikan empuk dan kuah meresap.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        const likeBtn = document.getElementById("likeBtn");
+        const dislikeBtn = document.getElementById("dislikeBtn");
+
+        likeBtn.addEventListener("click", () => {
+            likeBtn.classList.toggle("active");
+            if (likeBtn.classList.contains("active")) {
+                dislikeBtn.classList.remove("active");
+            }
+        });
+
+        dislikeBtn.addEventListener("click", () => {
+            dislikeBtn.classList.toggle("active");
+            if (dislikeBtn.classList.contains("active")) {
+                likeBtn.classList.remove("active");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

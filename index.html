@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resep Nusantara</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS ASLI LU (TIDAK DIUBAH) -->
+  <link rel="stylesheet" href="css/beranda.css" />
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="img/ikon/vector.svg">
+    <span>ResepNusantara</span>
+  </div>
+
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <ul class="menu">
+    <li><a href="index.html" class="active">Beranda</a></li>
+    <li><a href="provinsi.html">Provinsi</a></li>
+    <li><a href="peringkat.html">Peringkat</a></li>
+
+    <li class="menu-auth">
+      <a href="login.html" id="authBtn" class="auth-btn login">
+        <span class="icon">↪</span>
+        <span class="text">Login</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <img src="img/masakan/hero.jpg" class="hero-img">
+  <div class="hero-content">
+    <h1>Jelajahi Rasa dari<br>Sabang sampai Merauke</h1>
+    <p>Temukan ribuan resep tradisional dari 38 provinsi di Indonesia</p>
+    <a href="semua_resep.html">
+      <button class="btn-primary">Lihat Semua Resep</button>
+    </a>
+  </div>
+</header>
+
+<!-- ================= REKOMENDASI ================= -->
+<section class="section">
+  <h2>Rekomendasi Mingguan</h2>
+  <p class="sub">Resep pilihan minggu ini yang wajib dicoba</p>
+
+  <!-- CONTAINER ASLI (WAJIB ADA) -->
+  <div class="card-grid" id="weekly-recommendation"></div>
+</section>
+
+<!-- ================= PROVINSI ================= -->
+<section class="section">
+  <h2>Provinsi Terpopuler</h2>
+  <p class="sub">Provinsi dengan resep terpopuler</p>
+
+  <!-- CONTAINER ASLI -->
+  <div class="prov-grid" id="popular-province"></div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-box">
+  <h2>Temukan Resep Tradisional Lainnya</h2>
+  <p>
+    Jelajahi kekayaan kuliner Nusantara dan temukan resep favorit dari
+    setiap provinsi di Indonesia
+  </p>
+  <a href="provinsi.html">
+    <button class="btn-light">Jelajahi semua provinsi</button>
+  </a>
+</section>
+
+<script type="module">
+import { supabase } from "./js/supabase.js";
+
+console.log("INDEX SCRIPT LOADED");
+
+// ================= REKOMENDASI MINGGUAN =================
+const weeklyContainer = document.getElementById("weekly-recommendation");
+
+if (!weeklyContainer) {
+  console.error("weekly-recommendation NOT FOUND");
+} else {
+  const { data: recipes, error } = await supabase
+    .from("recipes")
+    .select("slug, title, teaser, image_url")
+    .not("teaser", "is", null)
+    .limit(6);
+
+  if (error) {
+    console.error("RECIPE ERROR:", error);
+  } else {
+    weeklyContainer.innerHTML = "";
+
+    recipes.forEach(r => {
+      const a = document.createElement("a");
+      a.href = `resep.html?slug=${r.slug}`;
+      a.className = "card";
+
+      a.innerHTML = `
+        <div class="card-img">
+          <img src="${r.image_url}" alt="${r.title}">
+          <h3>${r.title}</h3>
+          <div class="desc-shape">
+            <p>${r.teaser}</p>
+          </div>
+        </div>
+      `;
+
+      weeklyContainer.appendChild(a);
+    });
+  }
+}
+
+// ================= PROVINSI TERPOPULER (FIXED) =================
+const provinceContainer = document.getElementById("popular-province");
+
+const { data: rows, error } = await supabase
+  .from("recipes")
+  .select(`
+    likes,
+    province:provinces!recipes_province_id_fkey (
+      id,
+      name,
+      image_url
+    )
+  `)
+  .gt("likes", 0);
+
+if (error) {
+  console.error("PROVINCE ERROR:", error);
+} else {
+  const map = {};
+
+  rows.forEach(r => {
+    if (!r.province) return;
+
+    const p = r.province;
+
+    if (!map[p.id]) {
+      map[p.id] = {
+        id: p.id,
+        name: p.name,
+        image_url: p.image_url,
+        totalLikes: 0
+      };
+    }
+
+    map[p.id].totalLikes += r.likes;
+  });
+
+  const ranked = Object.values(map)
+    .sort((a, b) => b.totalLikes - a.totalLikes)
+    .slice(0, 4);
+
+  provinceContainer.innerHTML = "";
+
+  ranked.forEach(p => {
+    const a = document.createElement("a");
+    a.href = `daftar_resep.html?provinsi=${p.name
+      .toLowerCase()
+      .replaceAll(" ", "-")}`;
+    a.className = "prov";
+
+    a.innerHTML = `
+      <img src="${p.image_url}">
+      <h3>${p.name}</h3>
+    `;
+
+    provinceContainer.appendChild(a);
+  });
+}
+</script>
+
+
+</body>
+</html>

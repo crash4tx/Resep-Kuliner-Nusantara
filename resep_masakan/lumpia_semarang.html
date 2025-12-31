@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumpia Semarang – Resep Nusantara</title>
+
+    <link rel="stylesheet" href="resep_masakan.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../img ikon/vector.svg">
+            <span>ResepNusantara</span>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">☰</label>
+
+        <ul class="menu">
+            <li><a href="../beranda.html">Beranda</a></li>
+            <li><a href="../provinsi.html" class="active">Provinsi</a></li>
+            <li><a href="../peringkat.html">Peringkat</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <img src="../img masakan/lumpia_semarang.png" class="hero-img">
+
+        <div class="hero-content">
+            <a href="../daftar_resep/jawa_tengah.html" class="btn-back">
+                <img src="../img ikon/arrow.svg">
+                <span>Kembali</span>
+            </a>
+
+            <p class="tag">Jawa Tengah</p>
+            <h1>Lumpia Semarang</h1>
+            <div class="rating-wrapper">
+                <button class="rate-btn" id="likeBtn">
+                    <img src="../img ikon/like.svg" alt="Like">
+                </button>
+
+                <button class="rate-btn" id="dislikeBtn">
+                    <img src="../img ikon/dislike.svg" alt="Dislike">
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Tentang Menu Ini</h2>
+        <p class="sub">
+            Lumpia Semarang adalah makanan khas berbentuk gulungan berisi rebung, telur, dan udang.
+        </p>
+    </section>
+
+    <div class="detail-container">
+
+        <div class="detail-card">
+            <h3>Resep</h3>
+            <ul>
+                <li>10 lembar kulit lumpia</li>
+                <li>200 g rebung, iris halus</li>
+                <li>2 telur, orak-arik</li>
+                <li>100 g udang cincang</li>
+                <li>3 siung bawang putih</li>
+                <li>2 siung bawang merah</li>
+                <li>Kecap manis secukupnya</li>
+                <li>Garam & lada secukupnya</li>
+            </ul>
+        </div>
+
+        <div class="detail-card">
+            <h3>Cara Mengolah</h3>
+            <ul>
+                <li>Tumis bawang hingga harum.</li>
+                <li>Masukkan udang dan rebung, masak hingga matang.</li>
+                <li>Tambahkan telur orak-arik, garam, dan kecap.</li>
+                <li>Masukkan ke kulit lumpia lalu gulung.</li>
+                <li>Goreng hingga warna keemasan.</li>
+                <li>Sajikan dengan saus khas lumpia.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        const likeBtn = document.getElementById("likeBtn");
+        const dislikeBtn = document.getElementById("dislikeBtn");
+
+        likeBtn.addEventListener("click", () => {
+            likeBtn.classList.toggle("active");
+            if (likeBtn.classList.contains("active")) {
+                dislikeBtn.classList.remove("active");
+            }
+        });
+
+        dislikeBtn.addEventListener("click", () => {
+            dislikeBtn.classList.toggle("active");
+            if (dislikeBtn.classList.contains("active")) {
+                likeBtn.classList.remove("active");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

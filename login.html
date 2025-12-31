@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masuk</title>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <a href="index.html" class="back">
+        <img src="img/ikon/arrow.svg" alt="Kembali" />
+        <span>Kembali</span>
+      </a>
+
+      <h1 class="title">MASUK</h1>
+      <p class="subtitle">Masuk untuk menikmati fitur lainnya</p>
+
+      <p id="error" class="error-msg"></p>
+
+      <label class="label">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="input-field"
+        placeholder="Masukkan email"
+      />
+
+      <label class="label">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="input-field"
+        placeholder="Masukkan password"
+      />
+
+      <a href="lupa_password.html" class="forgot">Lupa password?</a>
+
+      <button class="btn-main" id="btnLogin">Masuk</button>
+
+      <button class="btn-google">
+        <img src="img/ikon/logo google.svg" /> Masuk dengan Google
+      </button>
+
+      <p class="bottom-text">
+        Belum punya akun? <a href="registrasi.html">Daftar di sini</a>
+      </p>
+    </div>
+
+    <script type="module">
+      import { supabase } from "./js/supabase.js";
+
+      const errorBox = document.getElementById("error");
+      const btnLogin = document.getElementById("btnLogin");
+
+      // ================= LOGIN EMAIL =================
+      btnLogin.addEventListener("click", async () => {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        errorBox.innerText = "";
+
+        if (!email || !password) {
+          errorBox.innerText = "Email dan password wajib diisi";
+          return;
+        }
+
+        // LOGIN
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) {
+          if (error.message.toLowerCase().includes("confirm")) {
+            errorBox.innerText =
+              "Email belum diverifikasi. Silakan cek inbox atau spam.";
+          } else {
+            errorBox.innerText = "Email atau password salah";
+          }
+          return;
+        }
+
+        // ================= CEK ROLE =================
+        const { data: profile, error: profErr } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", data.user.id)
+          .single();
+
+        if (profErr || !profile) {
+          errorBox.innerText = "Gagal mengambil role user";
+          return;
+        }
+
+        // ================= REDIRECT =================
+        if (profile.role === "admin") {
+          window.location.href = "admin.html";
+        } else {
+          window.location.href = "index.html";
+        }
+      });
+
+      // ================= LOGIN GOOGLE =================
+      document
+        .querySelector(".btn-google")
+        .addEventListener("click", async () => {
+          await supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+              redirectTo: location.origin + "beranda.html",
+              queryParams: {
+                prompt: "select_account",
+              },
+            },
+          });
+        });
+    </script>
+  </body>
+</html>
