@@ -43,7 +43,7 @@
   <img src="img/masakan/hero.jpg" class="hero-img">
   <div class="hero-content">
     <h1>Jelajahi Rasa dari<br>Sabang sampai Merauke</h1>
-    <p>Temukan ribuan resep tradisional dari 38 provinsi di Indonesia</p>
+    <p>Temukan resep masakan tradisional dari 38 provinsi diindonesia</p>
     <a href="semua_resep.html">
       <button class="btn-primary">Lihat Semua Resep</button>
     </a>
@@ -125,52 +125,49 @@ if (!weeklyContainer) {
 // ================= PROVINSI TERPOPULER (FIXED) =================
 const provinceContainer = document.getElementById("popular-province");
 
-const { data: rows, error } = await supabase
-  .from("recipes")
+const { data, error } = await supabase
+  .from("provinces")
   .select(`
-    likes,
-    province:provinces!recipes_province_id_fkey (
-      id,
-      name,
-      image_url
+    id,
+    name,
+    image_url,
+    recipes:recipes!recipes_province_id_fkey (
+      recipe_votes ( vote )
     )
-  `)
-  .gt("likes", 0);
+  `);
 
 if (error) {
-  console.error("PROVINCE ERROR:", error);
+  console.error(error);
 } else {
-  const map = {};
+  const ranked = data
+    .map(p => {
+      let totalLike = 0;
 
-  rows.forEach(r => {
-    if (!r.province) return;
+      p.recipes.forEach(r => {
+        totalLike += r.recipe_votes.filter(v => v.vote === "like").length;
+      });
 
-    const p = r.province;
+      if (totalLike === 0) return null;
 
-    if (!map[p.id]) {
-      map[p.id] = {
+      return {
         id: p.id,
         name: p.name,
         image_url: p.image_url,
-        totalLikes: 0
+        totalLike
       };
-    }
-
-    map[p.id].totalLikes += r.likes;
-  });
-
-  const ranked = Object.values(map)
-    .sort((a, b) => b.totalLikes - a.totalLikes)
-    .slice(0, 4);
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.totalLike - a.totalLike)
+    .slice(0, 4); // cuma top 4, kalau ada 2 ya 2
 
   provinceContainer.innerHTML = "";
 
   ranked.forEach(p => {
     const a = document.createElement("a");
+    a.className = "prov";
     a.href = `daftar_resep.html?provinsi=${p.name
       .toLowerCase()
       .replaceAll(" ", "-")}`;
-    a.className = "prov";
 
     a.innerHTML = `
       <img src="${p.image_url}">
@@ -180,6 +177,7 @@ if (error) {
     provinceContainer.appendChild(a);
   });
 }
+
 </script>
 
 
